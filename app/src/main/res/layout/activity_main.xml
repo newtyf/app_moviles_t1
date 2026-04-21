@@ -4,7 +4,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="24dp">
+    android:padding="24dp">
 
     <TextView
         android:id="@+id/txtTitulo"
@@ -20,22 +20,10 @@
         android:layout_marginTop="60dp"/>
 
     <TextView
-        android:id="@+id/txtSubtitulo"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Urbanizacion - Control de Votos"
-        android:textSize="14sp"
-        android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@id/txtTitulo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"/>
-
-    <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Cedula / Usuario:"
-        app:layout_constraintTop_toBottomOf="@id/txtSubtitulo"
+        app:layout_constraintTop_toBottomOf="@id/txtTitulo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="40dp"
@@ -45,7 +33,7 @@
         android:id="@+id/txtCedula"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Ingrese cedula o usuario"
+        android:hint="Ingrese cédula o usuario"
         android:inputType="text"
         app:layout_constraintTop_toBottomOf="@id/lblCedula"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,7 +43,7 @@
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Contrasena:"
+        android:text="Contraseña:"
         app:layout_constraintTop_toBottomOf="@id/txtCedula"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -91,6 +79,8 @@
         android:layout_height="wrap_content"
         android:text="Ingresar"
         android:onClick="ingresar"
+        android:backgroundTint="@android:color/holo_orange_light"
+        android:textColor="@android:color/black"
         app:layout_constraintTop_toBottomOf="@id/txtError"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

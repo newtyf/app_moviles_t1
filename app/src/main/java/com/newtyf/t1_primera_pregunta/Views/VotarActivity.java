@@ -111,7 +111,6 @@ public class VotarActivity extends AppCompatActivity {
             sdfFechaHora.setTimeZone(TimeZone.getTimeZone("America/Lima"));
             Date ahora = new Date();
             String fechaHoy = sdfFecha.format(ahora);
-            Log.i("LOG", ""+fechaHoy +"->" +cfg.getFecha());
             if (!fechaHoy.equals(cfg.getFecha())) return false;
             Date inicio = sdfFechaHora.parse(cfg.getFecha() + " " + cfg.getHoraInicio());
             Date fin = sdfFechaHora.parse(cfg.getFecha() + " " + cfg.getHoraFin());
