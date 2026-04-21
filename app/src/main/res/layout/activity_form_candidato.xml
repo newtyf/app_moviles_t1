@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/main"
+    android:padding="24dp">
+
+    <TextView
+        android:id="@+id/txtTitulo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Candidato"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
+
+    <TextView
+        android:id="@+id/lblNombre"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Nombre del Candidato:"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toBottomOf="@id/txtTitulo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <EditText
+        android:id="@+id/txtNombre"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Nombre completo"
+        android:inputType="text"
+        android:layout_marginTop="4dp"
+        app:layout_constraintTop_toBottomOf="@id/lblNombre"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/lblPropuesta"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Propuesta:"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/txtNombre"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <EditText
+        android:id="@+id/txtPropuesta"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Descripcion de propuesta"
+        android:inputType="textMultiLine"
+        android:lines="3"
+        android:layout_marginTop="4dp"
+        app:layout_constraintTop_toBottomOf="@id/lblPropuesta"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/txtError"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text=""
+
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/txtPropuesta"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
+        android:id="@+id/btnGuardar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Guardar"
+        android:onClick="guardar"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/txtError"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
+        android:id="@+id/btnEliminar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Eliminar"
+        android:onClick="eliminar"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/btnGuardar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
+        android:id="@+id/btnVolver"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Volver"
+        android:onClick="volver"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/btnEliminar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

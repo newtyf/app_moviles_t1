@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp">
+
+    <TextView
+        android:id="@+id/txtTitulo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Menu Administrador"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
+
+    <Button
+        android:id="@+id/btnCandidatos"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Gestionar Candidatos"
+        android:onClick="irCandidatos"
+        app:layout_constraintTop_toBottomOf="@id/txtTitulo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="32dp"/>
+
+    <Button
+        android:id="@+id/btnElectores"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Gestionar Electores"
+        android:onClick="irElectores"
+        app:layout_constraintTop_toBottomOf="@id/btnCandidatos"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="12dp"/>
+
+    <Button
+        android:id="@+id/btnEleccion"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Configurar Eleccion"
+        android:onClick="irEleccion"
+        app:layout_constraintTop_toBottomOf="@id/btnElectores"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="12dp"/>
+
+    <Button
+        android:id="@+id/btnResultados"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Ver Resultados"
+        android:onClick="irResultados"
+        app:layout_constraintTop_toBottomOf="@id/btnEleccion"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="12dp"/>
+
+    <Button
+        android:id="@+id/btnCerrar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Cerrar Sesion"
+        android:onClick="cerrarSesion"
+        app:layout_constraintTop_toBottomOf="@id/btnResultados"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="32dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

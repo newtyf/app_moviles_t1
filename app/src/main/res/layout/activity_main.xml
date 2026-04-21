@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="24dp">
+
+    <TextView
+        android:id="@+id/txtTitulo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Sistema de Votacion"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="60dp"/>
+
+    <TextView
+        android:id="@+id/txtSubtitulo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Urbanizacion - Control de Votos"
+        android:textSize="14sp"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/txtTitulo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Cedula / Usuario:"
+        app:layout_constraintTop_toBottomOf="@id/txtSubtitulo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="40dp"
+        android:id="@+id/lblCedula"/>
+
+    <EditText
+        android:id="@+id/txtCedula"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Ingrese cedula o usuario"
+        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@id/lblCedula"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="4dp"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Contrasena:"
+        app:layout_constraintTop_toBottomOf="@id/txtCedula"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:id="@+id/lblPassword"/>
+
+    <EditText
+        android:id="@+id/txtPassword"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Ingrese contrasena"
+        android:inputType="textPassword"
+        app:layout_constraintTop_toBottomOf="@id/lblPassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="4dp"/>
+
+    <TextView
+        android:id="@+id/txtError"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text=""
+
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/txtPassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"/>
+
+    <Button
+        android:id="@+id/btnIngresar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Ingresar"
+        android:onClick="ingresar"
+        app:layout_constraintTop_toBottomOf="@id/txtError"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
