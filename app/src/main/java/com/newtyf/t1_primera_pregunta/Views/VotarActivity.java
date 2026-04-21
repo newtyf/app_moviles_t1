@@ -1,6 +1,7 @@
 package com.newtyf.t1_primera_pregunta.Views;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
 
 
 public class VotarActivity extends AppCompatActivity {
@@ -104,9 +106,12 @@ public class VotarActivity extends AppCompatActivity {
     boolean estaEnIntervalo(EleccionConfig cfg) {
         try {
             SimpleDateFormat sdfFecha = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+            sdfFecha.setTimeZone(TimeZone.getTimeZone("America/Lima"));
             SimpleDateFormat sdfFechaHora = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
+            sdfFechaHora.setTimeZone(TimeZone.getTimeZone("America/Lima"));
             Date ahora = new Date();
             String fechaHoy = sdfFecha.format(ahora);
+            Log.i("LOG", ""+fechaHoy +"->" +cfg.getFecha());
             if (!fechaHoy.equals(cfg.getFecha())) return false;
             Date inicio = sdfFechaHora.parse(cfg.getFecha() + " " + cfg.getHoraInicio());
             Date fin = sdfFechaHora.parse(cfg.getFecha() + " " + cfg.getHoraFin());

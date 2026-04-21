@@ -7,7 +7,7 @@ public class Elector {
     private String password;
     private int departamentoId;
     private int moduloId;
-    private Integer votoCandidatoId; // null = no ha votado, -1 = voto en blanco
+    private Integer votoCandidatoId;
 
     public Elector(int id, String nombre, String cedula, String password, int departamentoId, int moduloId) {
         this.id = id;
