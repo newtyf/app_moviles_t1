@@ -5,17 +5,17 @@ public class Elector {
     private String nombre;
     private String cedula;
     private String password;
-    private int departamentoId;
-    private int moduloId;
+    private String departamento;
+    private String modulo;
     private Integer votoCandidatoId;
 
-    public Elector(int id, String nombre, String cedula, String password, int departamentoId, int moduloId) {
+    public Elector(int id, String nombre, String cedula, String password, String departamento, String modulo) {
         this.id = id;
         this.nombre = nombre;
         this.cedula = cedula;
         this.password = password;
-        this.departamentoId = departamentoId;
-        this.moduloId = moduloId;
+        this.departamento = departamento;
+        this.modulo = modulo;
         this.votoCandidatoId = null;
     }
 
@@ -31,11 +31,11 @@ public class Elector {
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
 
-    public int getDepartamentoId() { return departamentoId; }
-    public void setDepartamentoId(int departamentoId) { this.departamentoId = departamentoId; }
+    public String getDepartamento() { return departamento; }
+    public void setDepartamento(String departamento) { this.departamento = departamento; }
 
-    public int getModuloId() { return moduloId; }
-    public void setModuloId(int moduloId) { this.moduloId = moduloId; }
+    public String getModulo() { return modulo; }
+    public void setModulo(String modulo) { this.modulo = modulo; }
 
     public Integer getVotoCandidatoId() { return votoCandidatoId; }
     public void setVotoCandidatoId(Integer votoCandidatoId) { this.votoCandidatoId = votoCandidatoId; }

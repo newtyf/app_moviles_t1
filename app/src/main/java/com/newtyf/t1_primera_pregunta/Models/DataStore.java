@@ -6,8 +6,6 @@ import java.util.List;
 public class DataStore {
     private static DataStore instance;
 
-    public final List<Modulo> modulos = new ArrayList<>();
-    public final List<Departamento> departamentos = new ArrayList<>();
     public List<Candidato> candidatos = new ArrayList<>();
     public List<Elector> electores = new ArrayList<>();
     public EleccionConfig eleccionConfig = null;
@@ -19,21 +17,12 @@ public class DataStore {
     public static final String ADMIN_PASS = "admin123";
 
     private DataStore() {
-        String[] nombresModulos = {"Modulo A", "Modulo B", "Modulo C", "Modulo D", "Modulo E"};
-        for (int m = 0; m < 5; m++) {
-            modulos.add(new Modulo(m + 1, nombresModulos[m]));
-        }
-
-        for (int d = 1; d <= 20; d++) {
-            departamentos.add(new Departamento(d, "Depto 1" + String.format("%02d", d)));
-        }
-
         candidatos.add(new Candidato(nextCandidatoId++, "Juan Perez", "Seguridad y orden"));
         candidatos.add(new Candidato(nextCandidatoId++, "Maria Lopez", "Mejoras en areas comunes"));
 
-        electores.add(new Elector(nextElectorId++, "Carlos Ruiz", "1234567890", "pass1", 1, 1));
-        electores.add(new Elector(nextElectorId++, "Ana Torres", "0987654321", "pass2", 2, 1));
-        electores.add(new Elector(nextElectorId++, "Luis Mora", "1122334455", "pass3", 1, 2));
+        electores.add(new Elector(nextElectorId++, "Carlos Ruiz", "1234567890", "pass1", "Depto 101", "Modulo A"));
+        electores.add(new Elector(nextElectorId++, "Ana Torres", "0987654321", "pass2", "Depto 101", "Modulo B"));
+        electores.add(new Elector(nextElectorId++, "Luis Mora", "1122334455", "pass3", "Depto 102", "Modulo A"));
     }
 
     public static DataStore getInstance() {
@@ -41,23 +30,6 @@ public class DataStore {
         return instance;
     }
 
-    // --- Modulos ---
-    public Modulo getModuloPorId(int id) {
-        for (int i = 0; i < modulos.size(); i++) {
-            if (modulos.get(i).getId() == id) return modulos.get(i);
-        }
-        return null;
-    }
-
-    // --- Departamentos ---
-    public Departamento getDepartamentoPorId(int id) {
-        for (int i = 0; i < departamentos.size(); i++) {
-            if (departamentos.get(i).getId() == id) return departamentos.get(i);
-        }
-        return null;
-    }
-
-    // --- Candidatos ---
     public int nextCandidatoId() { return nextCandidatoId++; }
 
     public Candidato getCandidatoPorId(int id) {
@@ -67,7 +39,6 @@ public class DataStore {
         return null;
     }
 
-    // --- Electores ---
     public int nextElectorId() { return nextElectorId++; }
 
     public Elector getElectorPorId(int id) {
@@ -85,7 +56,6 @@ public class DataStore {
         return null;
     }
 
-    // --- Resultados ---
     public int contarVotosCandidato(int candidatoId) {
         int count = 0;
         for (int i = 0; i < electores.size(); i++) {

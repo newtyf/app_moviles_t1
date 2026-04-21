@@ -10,9 +10,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import com.newtyf.t1_primera_pregunta.Models.DataStore;
-import com.newtyf.t1_primera_pregunta.Models.Departamento;
 import com.newtyf.t1_primera_pregunta.Models.Elector;
-import com.newtyf.t1_primera_pregunta.Models.Modulo;
 import com.newtyf.t1_primera_pregunta.R;
 
 public class MenuElectorActivity extends AppCompatActivity {
@@ -35,26 +33,21 @@ public class MenuElectorActivity extends AppCompatActivity {
         txtBienvenida = findViewById(R.id.txtBienvenida);
         txtInfo = findViewById(R.id.txtInfo);
 
-        Elector elector = DataStore.getInstance().getElectorPorId(electorId);
-        if (elector != null) {
-            Departamento d = DataStore.getInstance().getDepartamentoPorId(elector.getDepartamentoId());
-            Modulo m = DataStore.getInstance().getModuloPorId(elector.getModuloId());
-            txtBienvenida.setText("Bienvenido, " + elector.getNombre());
-            txtInfo.setText("Modulo: " + (m != null ? m.getNombre() : "-") +
-                    " | Depto: " + (d != null ? d.getNombre() : "-") +
-                    "\nEstado: " + (elector.haVotado() ? "Ya voto" : "Pendiente de votar"));
-        }
+        mostrarInfo();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        mostrarInfo();
+    }
+
+    void mostrarInfo() {
         Elector elector = DataStore.getInstance().getElectorPorId(electorId);
-        if (elector != null && txtInfo != null) {
-            Departamento d = DataStore.getInstance().getDepartamentoPorId(elector.getDepartamentoId());
-            Modulo m = DataStore.getInstance().getModuloPorId(elector.getModuloId());
-            txtInfo.setText("Modulo: " + (m != null ? m.getNombre() : "-") +
-                    " | Depto: " + (d != null ? d.getNombre() : "-") +
+        if (elector != null) {
+            txtBienvenida.setText("Bienvenido, " + elector.getNombre());
+            txtInfo.setText("Modulo: " + elector.getModulo() +
+                    " | Depto: " + elector.getDepartamento() +
                     "\nEstado: " + (elector.haVotado() ? "Ya voto" : "Pendiente de votar"));
         }
     }
