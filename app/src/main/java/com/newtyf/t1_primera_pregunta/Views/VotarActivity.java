@@ -1,10 +1,10 @@
 package com.newtyf.t1_primera_pregunta.Views;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.Button;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,20 +17,16 @@ import com.newtyf.t1_primera_pregunta.Models.EleccionConfig;
 import com.newtyf.t1_primera_pregunta.Models.Elector;
 import com.newtyf.t1_primera_pregunta.R;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
 
 public class VotarActivity extends AppCompatActivity {
 
-    ListView lstCandidatos;
+    TableLayout tablaVotar;
     TextView txtInfo, txtError, txtMensaje;
     int electorId;
-    List<Candidato> candidatosOpciones = new ArrayList<>();
-    boolean tieneVotoEnBlanco = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +39,7 @@ public class VotarActivity extends AppCompatActivity {
             return insets;
         });
 
-        lstCandidatos = findViewById(R.id.lstCandidatos);
+        tablaVotar = findViewById(R.id.tablaVotar);
         txtInfo = findViewById(R.id.txtInfo);
         txtError = findViewById(R.id.txtError);
         txtMensaje = findViewById(R.id.txtMensaje);
@@ -57,50 +53,69 @@ public class VotarActivity extends AppCompatActivity {
         if (elector.haVotado()) {
             txtInfo.setText("Ya emitio su voto. No puede votar nuevamente.");
             txtMensaje.setText("");
-            lstCandidatos.setVisibility(View.GONE);
+            tablaVotar.setVisibility(View.GONE);
             return;
         }
 
         EleccionConfig cfg = ds.eleccionConfig;
         if (cfg == null) {
             txtError.setText("No hay eleccion configurada");
-            lstCandidatos.setVisibility(View.GONE);
+            tablaVotar.setVisibility(View.GONE);
             return;
         }
 
         if (!estaEnIntervalo(cfg)) {
             txtError.setText("La votacion no esta activa en este momento.\nFecha: " +
                     cfg.getFecha() + " de " + cfg.getHoraInicio() + " a " + cfg.getHoraFin());
-            lstCandidatos.setVisibility(View.GONE);
+            tablaVotar.setVisibility(View.GONE);
             return;
         }
 
         txtInfo.setText("Seleccione su candidato, " + elector.getNombre() + ":");
 
-        List<String> etiquetas = new ArrayList<>();
         for (int i = 0; i < ds.candidatos.size(); i++) {
             Candidato c = ds.candidatos.get(i);
-            candidatosOpciones.add(c);
-            etiquetas.add(c.getNombre() + " - " + c.getPropuesta());
+
+            TableRow fila = new TableRow(this);
+            fila.setPadding(0, 8, 0, 8);
+
+            TextView txtNombre = new TextView(this);
+            txtNombre.setText(c.getNombre() + "\n" + c.getPropuesta());
+            txtNombre.setPadding(4, 0, 4, 0);
+
+            Button btnVotar = new Button(this);
+            btnVotar.setText("Votar");
+            btnVotar.setOnClickListener(v -> {
+                elector.setVotoCandidatoId(c.getId());
+                txtMensaje.setText("Voto registrado por: " + c.getNombre());
+                txtInfo.setText("Su voto ha sido emitido exitosamente.");
+                tablaVotar.setVisibility(View.GONE);
+            });
+
+            fila.addView(txtNombre);
+            fila.addView(btnVotar);
+            tablaVotar.addView(fila);
         }
-        etiquetas.add("--- Voto en Blanco ---");
-        tieneVotoEnBlanco = true;
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, etiquetas);
-        lstCandidatos.setAdapter(adapter);
+        TableRow filaBlanco = new TableRow(this);
+        filaBlanco.setPadding(0, 8, 0, 8);
 
-        lstCandidatos.setOnItemClickListener((parent, view, position, id) -> {
-            if (position < candidatosOpciones.size()) {
-                Candidato sel = candidatosOpciones.get(position);
-                elector.setVotoCandidatoId(sel.getId());
-                txtMensaje.setText("Voto registrado por: " + sel.getNombre());
-            } else {
-                elector.setVotoCandidatoId(-1);
-                txtMensaje.setText("Voto en blanco registrado");
-            }
-            lstCandidatos.setVisibility(View.GONE);
+        TextView txtBlanco = new TextView(this);
+        txtBlanco.setText("Voto en Blanco");
+        txtBlanco.setPadding(4, 0, 4, 0);
+
+        Button btnBlanco = new Button(this);
+        btnBlanco.setText("Votar");
+        btnBlanco.setOnClickListener(v -> {
+            elector.setVotoCandidatoId(-1);
+            txtMensaje.setText("Voto en blanco registrado");
             txtInfo.setText("Su voto ha sido emitido exitosamente.");
+            tablaVotar.setVisibility(View.GONE);
         });
+
+        filaBlanco.addView(txtBlanco);
+        filaBlanco.addView(btnBlanco);
+        tablaVotar.addView(filaBlanco);
     }
 
     boolean estaEnIntervalo(EleccionConfig cfg) {

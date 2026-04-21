@@ -3,8 +3,9 @@ package com.newtyf.t1_primera_pregunta.Views;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.Button;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,7 +19,7 @@ import java.util.List;
 
 public class ListaCandidatosActivity extends AppCompatActivity {
 
-    ListView lstCandidatos;
+    TableLayout tablaCandidatos;
     TextView txtConteo;
 
     @Override
@@ -31,29 +32,52 @@ public class ListaCandidatosActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        lstCandidatos = findViewById(R.id.lstCandidatos);
+        tablaCandidatos = findViewById(R.id.tablaCandidatos);
         txtConteo = findViewById(R.id.txtConteo);
-        cargarLista();
+        cargarTabla();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        cargarLista();
+        cargarTabla();
     }
 
-    void cargarLista() {
+    void cargarTabla() {
         List<Candidato> lista = DataStore.getInstance().candidatos;
         txtConteo.setText("Total: " + lista.size() + " / 5");
-        ArrayAdapter<Candidato> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, lista);
-        lstCandidatos.setAdapter(adapter);
+        tablaCandidatos.removeAllViews();
 
-        lstCandidatos.setOnItemClickListener((parent, view, position, id) -> {
-            Candidato c = lista.get(position);
-            Intent x = new Intent(this, FormCandidatoActivity.class);
-            x.putExtra("candidatoId", c.getId());
-            startActivity(x);
-        });
+        for (int i = 0; i < lista.size(); i++) {
+            Candidato c = lista.get(i);
+
+            TableRow fila = new TableRow(this);
+            fila.setPadding(0, 8, 0, 8);
+
+            TextView txtNombre = new TextView(this);
+            txtNombre.setText(c.getNombre());
+            txtNombre.setPadding(4, 0, 4, 0);
+
+            Button btnEditar = new Button(this);
+            btnEditar.setText("Editar");
+            btnEditar.setOnClickListener(v -> {
+                Intent x = new Intent(this, FormCandidatoActivity.class);
+                x.putExtra("candidatoId", c.getId());
+                startActivity(x);
+            });
+
+            Button btnEliminar = new Button(this);
+            btnEliminar.setText("Eliminar");
+            btnEliminar.setOnClickListener(v -> {
+                DataStore.getInstance().candidatos.remove(c);
+                cargarTabla();
+            });
+
+            fila.addView(txtNombre);
+            fila.addView(btnEditar);
+            fila.addView(btnEliminar);
+            tablaCandidatos.addView(fila);
+        }
     }
 
     public void insertarCandidato(View view) {
