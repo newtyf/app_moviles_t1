@@ -53,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(x);
             return;
         }
-        Toast.makeText(this,"fallo",Toast.LENGTH_LONG).show();
         // Verificar si es elector
         Elector elector = DataStore.getInstance().autenticarElector(cedula, password);
         if (elector != null) {
